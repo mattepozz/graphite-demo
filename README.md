@@ -1,1 +1,1 @@
-# graphite-demo
+# Graphite.dev demo

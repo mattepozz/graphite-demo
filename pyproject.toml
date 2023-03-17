@@ -1,0 +1,101 @@
+[tool.poetry]
+name = "graphite-demo"
+version = "0.1.0"
+description = ""
+authors = ["Pozz <mtp@bendingspoons.com>"]
+
+[tool.poetry.dependencies]
+python = "~3.10"
+
+streamlit = "^1.20.0"
+
+
+[tool.poetry.group.dev.dependencies]
+mypy = "^1.1.1"
+flake8 = "^6.0.0"
+black = "^23.1.0"
+isort = "^5.12.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+
+[tool.black]
+line-length = 100
+exclude = '''
+(
+    \venv |
+    \.DS_Store |
+    \.githooks |
+    \.html$ |
+    \.idea |
+    \.json$ |
+    \.pyc$ |
+    \.sql$ |
+    \.vscode |
+    \.venv |
+    node_modules
+)
+'''
+
+
+[tool.isort]
+profile = "black"
+line_length = 100
+
+
+[tool.pytest.ini_options]
+log_cli = "True"
+log_cli_level = "WARNING"
+addopts = '--strict-markers'
+
+
+[tool.mypy]
+plugins = "numpy.typing.mypy_plugin"
+
+# same as "mypy --strict" (except for "--warn-unused-configs")
+check_untyped_defs = true
+disallow_any_generics = true
+disallow_incomplete_defs = true
+disallow_subclassing_any = true
+disallow_untyped_calls = true
+disallow_untyped_decorators = true
+disallow_untyped_defs = true
+enable_error_code = "unused-awaitable"
+implicit_reexport = false
+no_implicit_optional = true
+no_namespace_packages = true
+strict_equality = true
+strict_optional = true
+warn_redundant_casts = true
+warn_return_any = true
+warn_unused_ignores = true
+
+
+[[tool.mypy.overrides]]
+module = [
+    "aiocache.*",
+    "asyncio_pool",
+    "base58.*",
+    "bsp_slack.*",
+    "cachetools.*",
+    "cloudpickle.*",
+    "decouple",
+    "deepdiff.*",
+    "google.*",
+    "googlecloudprofiler",
+    "httpx.*",
+    "isodate.*",
+    "matplotlib.*",
+    "plotly.*",
+    "ptpython.*",
+    "scipy.*",
+    "sklearn.*",
+    "scipy.optimize",
+    "spl.*",
+    "tqdm",
+    "vcr.*",
+    "wrapt.*",
+]
+ignore_missing_imports = true
